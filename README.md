@@ -5,7 +5,7 @@
 [![Docker Image CI](https://github.com/ebb-earl-co/tidal-wave/actions/workflows/docker-image.yml/badge.svg?branch=trunk)](https://github.com/ebb-earl-co/tidal-wave/actions/workflows/docker-image.yml)
 
 # My changes:
-- Check the docker example below! Made a small change to how that works.
+- Check the [docker example](https://github.com/BLovegrove/tidal-wave#docker%20example) below! Made a small change to how that works.
 - Album name now does not include the album ID and replaces the square brackets around the year with round brackets. This part is just eprsonal preference! The new format is 'AlbumName (AlbumYear)'
 
 # tidal-wave
