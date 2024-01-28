@@ -6,7 +6,7 @@
 
 # My changes:
 - Check the [docker example](https://github.com/BLovegrove/tidal-wave#docker-example) below! Made a small change to how that works.
-- Album name now does not include the album ID and replaces the square brackets around the year with round brackets. This part is just eprsonal preference! The new format is 'AlbumName (AlbumYear)'
+- Album name now does not include the album ID and replaces the square brackets around the year with round brackets. This part is just personal preference! The new format is 'AlbumName (AlbumYear)'
 
 # tidal-wave
 Waving at the [TIDAL](https://tidal.com) music service. Runs on (at least) Windows, macOS, and GNU/Linux.
