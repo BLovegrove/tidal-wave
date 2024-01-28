@@ -8,6 +8,7 @@
 Theres probably a better way to do all these things, but this is the best way I know at this point!
 - Check the [docker example](https://github.com/BLovegrove/tidal-wave#docker-example) below! Made a small change to how that works.
 - Album name now does not include the album ID and replaces the square brackets around the year with round brackets. This part is just personal preference! The new format is 'AlbumName (AlbumYear)'
+- Killed playlist folders - drops everything into base music directory as if you downloaded it via an album link. This should keep duplicates down if you're like me and have tons of playlists you arent always super careful of (':
 
 # tidal-wave
 Waving at the [TIDAL](https://tidal.com) music service. Runs on (at least) Windows, macOS, and GNU/Linux.
