@@ -64,8 +64,9 @@ class Playlist:
 
     def set_dir(self, out_dir: Path):
         """Populates self.playlist_dir based on self.name, self.playlist_id"""
-        playlist_substring: str = f"{self.name} [{self.playlist_id}]"
-        self.playlist_dir: Path = out_dir / "Playlists" / playlist_substring
+        #playlist_substring: str = f"{self.name} [{self.playlist_id}]"
+        self.playlist_dir: Path = out_dir
+        #/ "Playlists" / playlist_substring
         self.playlist_dir.mkdir(parents=True, exist_ok=True)
 
     def save_cover_image(self, session: Session, out_dir: Path):
@@ -310,7 +311,8 @@ class Playlist:
         self.set_dir(out_dir)
         self.save_cover_image(session, out_dir)
         try:
-            self.save_description()
+            # self.save_description()
+            pass
         except Exception:
             pass
 
@@ -319,21 +321,24 @@ class Playlist:
             logger.critical(f"Could not retrieve playlist with ID '{self.playlist_id}'")
             return
 
-        self.flatten_playlist_dir()
+        # self.flatten_playlist_dir()
+        # no flattening here! Duplicates galore otherwise
 
-        try:
-            m3u8_text: str = self.craft_m3u8_text()
-        except Exception as e:
-            logger.warning(
-                "Unable to create playlist.m3u8 file for "
-                f"playlist with ID '{self.playlist_id}'"
-            )
-            logger.debug(e)
-        else:
-            with open(self.playlist_dir / "playlist.m3u8", "w") as f:
-                f.write(m3u8_text)
+        # Don't really need this for archiving all your music, I plan on using plexamp/itunes/etc for playlists
+        # try:
+        #     m3u8_text: str = self.craft_m3u8_text()
+        # except Exception as e:
+        #     logger.warning(
+        #         "Unable to create playlist.m3u8 file for "
+        #         f"playlist with ID '{self.playlist_id}'"
+        #     )
+        #     logger.debug(e)
+        # else:
+        #     # with open(self.playlist_dir / "playlist.m3u8", "w") as f:
+        #     #     f.write(m3u8_text)
+        #     pass
 
-        logger.info(f"Playlist files written to '{self.playlist_dir}'")
+        # logger.info(f"Playlist files written to '{self.playlist_dir}'")
 
 
 class TidalPlaylistException(Exception):

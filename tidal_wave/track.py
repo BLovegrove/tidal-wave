@@ -108,7 +108,7 @@ class Track:
         based on the name of the album's artist"""
         artist_substring: str = self.album.artist.name.replace("..", "")
         album_substring: str = (
-            f"{self.album.name} " f"[{self.album.id}] [{self.album.release_date.year}]"
+            f"{self.album.name} " f"({self.album.release_date.year})"
         )
         self.album_dir: Path = out_dir / artist_substring / album_substring
         self.album_dir.mkdir(parents=True, exist_ok=True)
@@ -129,11 +129,11 @@ class Track:
         elif audio_format == AudioFormat.lossless:
             track_substring: str = f"{_track_part} [CD]"
         elif audio_format == AudioFormat.mqa:
-            track_substring: str = f"{_track_part} [Q]"
+            track_substring: str = f"{_track_part} [MQA]"
         elif audio_format == AudioFormat.hi_res:
             track_substring: str = f"{_track_part} [HiRes]"
         elif audio_format == AudioFormat.dolby_atmos:
-            track_substring: str = f"{_track_part} [A]"
+            track_substring: str = f"{_track_part} [ATMOS]"
         elif audio_format == AudioFormat.sony_360_reality_audio:
             track_substring: str = f"{_track_part} [360]"
         else:

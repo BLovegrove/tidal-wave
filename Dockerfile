@@ -62,5 +62,4 @@ RUN mkdir -p /home/debian/.config/tidal-wave/ /home/debian/Music/ && \
     chown -R debian:debian /home/debian/.config/tidal-wave/ /home/debian/Music/ && \
     pip install --user -r requirements.txt
 VOLUME /home/debian/.config/tidal-wave /home/debian/Music
-ENTRYPOINT ["python3", "-m", "tidal_wave"]
-CMD ["--help"]
+CMD ["sleep", "infinity"]
