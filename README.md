@@ -4,10 +4,16 @@
 [![Build Python package](https://github.com/ebb-earl-co/tidal-wave/actions/workflows/python-build.yml/badge.svg?branch=trunk&event=release)](https://github.com/ebb-earl-co/tidal-wave/actions/workflows/python-build.yml)
 [![Docker Image CI](https://github.com/ebb-earl-co/tidal-wave/actions/workflows/docker-image.yml/badge.svg?branch=trunk)](https://github.com/ebb-earl-co/tidal-wave/actions/workflows/docker-image.yml)
 
+# My changes:
+Theres probably a better way to do all these things, but this is the best way I know at this point!
+- Check the [docker example](https://github.com/BLovegrove/tidal-wave#docker-example) below! Made a small change to how that works.
+- Album name now does not include the album ID and replaces the square brackets around the year with round brackets. This part is just personal preference! The new format is 'AlbumName (AlbumYear)'
+- Killed playlist folders - drops everything into base music directory as if you downloaded it via an album link. This should keep duplicates down if you're like me and have tons of playlists you arent always super careful of (':
+
 # tidal-wave
 Waving at the [TIDAL](https://tidal.com) music service. Runs on (at least) Windows, macOS, and GNU/Linux.
 
->  TIDAL is an artist-first, fan-centered music streaming platform that delivers over 100 million songs in HiFi sound quality to the global music community. © 2024 TIDAL Music AS
+>  TIDAL is an artist-first, fan-centered music streaming platform that delivers over 100 million songs in HiFi sound quality to the global music community. © 2024 TIDAL Music ASimplementation
 
 This project is inspired by [`qobuz-dl`](https://github.com/vitiko98/qobuz-dl), and, particularly, is a continuation of [`Tidal-Media-Downloader`](https://github.com/yaronzz/Tidal-Media-Downloader). **This project is intended for private use only: it is not intended for distribution of copyrighted content**.
 
@@ -38,7 +44,7 @@ A [HiFi Plus](https://tidal.com/pricing) account is **required** in order to ret
    - *However*, as of version 2023.12.10, an [OCI container image](https://github.com/ebb-earl-co/tidal-wave/pkgs/container/tidal-wave); a [`pyapp`-compiled binaries](https://github.com/ebb-earl-co/tidal-wave/releases/latest); and [`pyinstaller`](https://pyinstaller.org/en/stable/)-created binaries for x86\_64 GNU/Linux, Apple Silicon macOS, and x86\_64 macOS are provided for download and use that *do not require Python installed*
  - Only a handful of Python libraries are dependencies:
    - [`backoff`](https://pypi.org/project/backoff/)
-   - [`dataclass-wizard`](https://pypi.org/project/dataclass-wizard/)
+   - [`dataclass-wizard`](h#docker-examplettps://pypi.org/project/dataclass-wizard/)
    - [`ffmpeg-python`](https://pypi.org/project/ffmpeg-python/)
    - [`mutagen`](https://pypi.org/project/mutagen/)
    - [`m3u8`](https://pypi.org/project/m3u8/)
@@ -170,6 +176,11 @@ Similarly, all media retrieved is placed in subdirectories of the user's default
  (.venv) $ tidal-wave https://listen.tidal.com/artist/... --audio-format hires --include-eps-singles
  ```
 #### Docker example
+Below the line separator is the original documentation for this section, but for my use-case (which is running on unraid to have direct access to my library without messing around with network shares) the default docker implementation didnt make any sense. With the very small change I've made to the dockerfile, the image should boot and stay open forever (or until manually closed) and you can use it basically as a stripped down vm. Jump in via docker exec, run 'python3 -m tidal-wave \*args\*, and you're away laughing! Make sure you mount the same music and config directories shown in the old documentation below.
+One thing that wasnt super clearly documented in the original repo, if you're following its wiki instructions for getting your android token to download HiRes audio, make sure you wipe the okhttp folder and log back into tidal / play some HiRes (labelled MAX in-app) music!! I tried this a few times and it failed, but a fresh token worked right away. If you get any issues in the future, try aquiring a new token before anything else. Do *not* place the token directly in the file found in your config directory. I think theres some kind of encoding going on behind the scenes? Whatever the case, the string stored there isn't the same as the token I pasted into the CLI so just keep that in mind (: 
+
+------------------ original docs beyond this point!! --------------------
+
 The command line options are the same for the Python invocation, but in order to save configuration and audio data, volumes need to be passed. If they are bind mounts to directories, **they must be created before executing `docker run` to avoid permissions issues**! For example,
 ```bash
 $ mkdir -p ./Music/ ./config/tidal-wave/
